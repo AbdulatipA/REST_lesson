@@ -2,6 +2,7 @@ package org.example.rest_lesson.service;
 
 import lombok.AllArgsConstructor;
 import org.example.rest_lesson.Order;
+import org.example.rest_lesson.OrderNotFoundException;
 import org.example.rest_lesson.repo.OrderRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class OrderService {
     }
 
     public Order findById(long id) {
-       return orderRepository.findById(id).orElseThrow(() -> new RuntimeException("Заказ не найден"));
+       return orderRepository.findById(id).orElseThrow(() -> new OrderNotFoundException("Заказ не найден"));
     }
 
     public void delete(long id) {

@@ -18,7 +18,7 @@ import java.util.List;
 public class OrderController {
     private final OrderService orderService;
 
-    @PostMapping("/create")
+    @PostMapping("/orders")
     @Operation(summary = "Добавить заказ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Заказ принят и возвращен обратно")
@@ -27,7 +27,7 @@ public class OrderController {
         return orderService.create(order);
     }
 
-    @GetMapping("/findById/{id}")
+    @GetMapping("/order/{id}")
     @Operation(summary = "Найти заказ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Заказ найден по id и возвращен обрано")
@@ -36,7 +36,7 @@ public class OrderController {
         return orderService.findById(id);
     }
 
-    @GetMapping("findByAll")
+    @GetMapping("/orders")
     @Operation(summary = "Найти все заказы")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Все заказы найдены и возвращены обратно")
@@ -46,7 +46,7 @@ public class OrderController {
     }
 
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/order/{id}")
     @Operation(summary = "Удалить заказ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Заказ удален по id")
