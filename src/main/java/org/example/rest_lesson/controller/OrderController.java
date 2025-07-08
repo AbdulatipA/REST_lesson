@@ -27,7 +27,7 @@ public class OrderController {
         return orderService.create(order);
     }
 
-    @GetMapping("/order/{id}")
+    @GetMapping("/orders/{id}")
     @Operation(summary = "Найти заказ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Заказ найден по id и возвращен обрано")
@@ -39,14 +39,15 @@ public class OrderController {
     @GetMapping("/orders")
     @Operation(summary = "Найти все заказы")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Все заказы найдены и возвращены обратно")
+            @ApiResponse(responseCode = "200", description = "Все заказы найдены и возвращены обратно"),
+            @ApiResponse(responseCode = "404", description = "Заказы не найдены")
     })
     public List<Order> findAll() {
         return orderService.findAll();
     }
 
 
-    @DeleteMapping("/order/{id}")
+    @DeleteMapping("/orders/{id}")
     @Operation(summary = "Удалить заказ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Заказ удален по id")
@@ -55,7 +56,7 @@ public class OrderController {
         orderService.delete(id);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/orders/{id}")
     @Operation(summary = "Обновить заказ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Заказ обновлен по id и возвращен обратно")
