@@ -1,4 +1,4 @@
-package org.example.rest_lesson;
+package org.example.rest_lesson.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
