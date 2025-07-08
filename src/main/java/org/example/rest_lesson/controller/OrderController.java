@@ -2,6 +2,10 @@ package org.example.rest_lesson.controller;
 
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -37,11 +41,17 @@ public class OrderController {
     }
 
     @GetMapping("/orders")
-    @Operation(summary = "Найти все заказы")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Все заказы найдены и возвращены обратно"),
-            @ApiResponse(responseCode = "404", description = "Заказы не найдены")
-    })
+    @Operation(summary = "Найти все заказы", description = "Возрващает список всех товаров из базы данных",
+            parameters = {
+                @Parameter(name = "page", description = "Номер страницы"),
+                @Parameter(name = "size", description = "Размер элементов на страницу")
+            },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Все заказы найдены и возвращены обратно",
+                                content = @Content(mediaType = "application/json",
+                                                schema = @Schema(implementation = Order.class))),
+                    @ApiResponse(responseCode = "404", description = "Заказы не найдены")
+            })
     public List<Order> findAll() {
         return orderService.findAll();
     }
